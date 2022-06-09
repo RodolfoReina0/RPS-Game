@@ -6,10 +6,13 @@
     </head>
     <body>
         <script>
-            let computerSelection = Math.floor(Math.random() * 3);
-            let playerSelection = prompt('type your choice');
+           var computerSelection;
+           var playerSelection;
+		var playerWins=0;
+		var computerWins=0;
 
             function computerPlay() {
+		
                 if (computerSelection == 0) {
                     computerSelection = "rock";
 
@@ -21,9 +24,9 @@
                 }
             }
 
-            computerPlay();
+            
 
-            console.log(computerSelection);
+            //console.log(computerSelection);
 
             function playRound(playerSelection, computerSelection) {
                 if (playerSelection == computerSelection) {
@@ -31,25 +34,25 @@
                     return "It is a tie";
 
                 } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-                    
+                    computerWins += 1;
                     return "You lose :(";
                 } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-                    
+                    playerWins += 1;
                     return "You win!";
                 } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-                    
+                    playerWins += 1;
                     return "You win!";
                 } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-                    
+                    playerWins += 1;
                     return "You win!";
                 } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-                    
+                    computerWins += 1;
                     return "You lose :(";
                 } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-                    
+                    playerWins += 1;
                     return "You win!";
                 } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-                    
+                    computerWins += 1;
                     return "You lose :(";
                 } else {//do nothing
                 }
@@ -57,12 +60,27 @@
             }
 
 	function game(){
-       		for (let i = 0; i < 5; i++) {
-   		console.log(playRound(playerSelection, computerSelection));
+       		
+		for (let i = 0; i < 5; i++) {
+		computerSelection = Math.floor(Math.random() * 3);
+		computerPlay();
+		console.log(computerSelection);
+
+            	playerSelection = prompt('type your choice');
+		
+		console.log(playRound(playerSelection, computerSelection));
+		console.log("Computer wins:" +  computerWins);
+		console.log("Your wins:" +  playerWins); 
 		}
 	}
 
 	game();
+
+	if(playerWins > computerWins){
+		console.log("Congratulations! You Win!");
+	} else{
+	"Sorry. You Lose :("
+	}
             
         </script>
     </body>
